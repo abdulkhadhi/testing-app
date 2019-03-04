@@ -1,0 +1,24 @@
+{
+    "id": "formPage",
+    "property": [
+        {
+            "id": "header",
+            "displayname": "shopping"
+        },
+        {
+            "id": "offer",
+            "displayname": "Todayoffer",
+            "Ui_category":"dropdown",
+            "choice": [
+                "electoring",
+                "fan",
+                "mobile",
+                "charger"
+            ]
+        },
+        {
+            "id": "login",
+            "displayname": "loginpage"
+        }
+    ]
+}
