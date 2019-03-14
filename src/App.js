@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 // import { Modal as ReactOverlayModal } from 'react-overlays'
-import { Modal, Button } from 'react-bootstrap'
+import Offer from './formpage/Offer';
 const datajs = require('./data/datajs.json');
 
 // var Modal = require('react-bootstrap-modal');
@@ -38,21 +38,13 @@ class App extends Component {
             </li>
             )}
         </ul>
-        {this.state.showitem === true ?
-          <div >
-            <Modal.Dialog className="left-size" >
-              <Modal.Body>
-                {
-                  this.state.listvalue.map((item, index) => (
-                    <li key={index}>
-                      {item}
-                    </li>
-                  ))
-                }
-              </Modal.Body>
-            </Modal.Dialog>
-          </div>
-          : ""}
+       <Offer
+        showitem = {this.state.showitem}
+        listvalue = {this.state.listvalue}
+       />
+       <LoginPage 
+       
+       />
       </div>
     );
   }
