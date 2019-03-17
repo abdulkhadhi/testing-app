@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 // import { Modal as ReactOverlayModal } from 'react-overlays'
 import Offer from './formpage/Offer';
+import LoginPage from "./formpage/LoginPage.1";
 const datajs = require('./data/datajs.json');
 
 // var Modal = require('react-bootstrap-modal');
@@ -11,23 +12,41 @@ class App extends Component {
     super(props);
     this.state = {
       listvalue: [],
-      showitem: false
+      showitem: false,
+      modal: false
     }
+    this.modelclose= this.modelclose.bind(this);
   }
   getoption(name) {
     var listvalue
-    if (name = "offer") {
+    if (name === "offer") {
       datajs.property.map(e1 => {
         if (e1.id === name) {
           listvalue = e1.choice
         }
       })
+      this.statechang(listvalue);
     }
+    if (name === "login") {
+      this.setState({
+        modal: !this.state.modal,
+        showitem: false,
+      })
+    }
+
+  };
+  statechang(listvalue) {
     this.setState({
       listvalue: listvalue,
-      showitem: !this.state.showitem
+      showitem: !this.state.showitem,
+      modal: false,
     })
-  };
+  }
+  modelclose() {
+    this.setState({
+      modal: false,
+    })
+  }
   render() {
     return (
       <div className="App">
@@ -38,13 +57,14 @@ class App extends Component {
             </li>
             )}
         </ul>
-       <Offer
-        showitem = {this.state.showitem}
-        listvalue = {this.state.listvalue}
-       />
-       <LoginPage 
-       
-       />
+        <Offer
+          showitem={this.state.showitem}
+          listvalue={this.state.listvalue}
+        />
+        <LoginPage
+          modal={this.state.modal}
+          close={this.modelclose}
+        />
       </div>
     );
   }
