@@ -13,10 +13,22 @@ class App extends Component {
     this.state = {
       listvalue: [],
       showitem: false,
-      modal: false
+      modal: false,
+      response: '',
     }
-    this.modelclose= this.modelclose.bind(this);
+    this.modelclose = this.modelclose.bind(this);
   }
+  // componentDidMount() {
+  //   this.callApi()
+  //     .then(res => this.setState({ response: res.express }))
+  //     .catch(err => console.log(err));
+  // }
+  // callApi = async () => {
+  //   const response = await fetch('/api/hello');
+  //   const body = await response.json();
+  //   if (response.status !== 200) throw Error(body.message);
+  //   return body;
+  // };
   getoption(name) {
     var listvalue
     if (name === "offer") {
@@ -57,6 +69,7 @@ class App extends Component {
             </li>
             )}
         </ul>
+        <p>{this.state.response}</p>
         <Offer
           showitem={this.state.showitem}
           listvalue={this.state.listvalue}

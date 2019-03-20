@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap'
+import axios from 'axios';
+
 export default class LoginPage extends Component {
     constructor(props) {
         super(props);
@@ -7,12 +9,31 @@ export default class LoginPage extends Component {
             email: '',
             password: '',
         }
-        this.modelclose= this.modelclose.bind(this);
+        this.modelclose = this.modelclose.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
-    submit() {
-        var userData = Object.assign({}, this.state);
-        console.log(userData)
+    // submit() {
+    //     var userData = Object.assign({}, this.state);
+    //     console.log(userData)
+    // }
+    onSubmit(e) {
+        e.preventDefault();
+        const obj = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        axios.post('http://localhost:4000/Reg/add', obj)
+            .then(res => this.newMethod(res));
+
+        this.setState({
+            email: '',
+            password: '',
+        })
     }
+    newMethod(res) {
+        return console.log(res.data);
+    }
+
     modelclose() {
         this.props.close();
     }
@@ -22,7 +43,7 @@ export default class LoginPage extends Component {
                 {
                     this.props.modal === true ?
                         <Modal.Dialog >
-                            
+
                             <Modal.Header>
 
                                 <Modal.Title>REGISTER</Modal.Title>
@@ -38,7 +59,7 @@ export default class LoginPage extends Component {
 
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={this.modelclose}>Close</Button>
-                                <Button variant="primary" type="submit" onClick={() => { this.submit() }} >Save changes</Button>
+                                <Button variant="primary" type="submit" onClick={this.onSubmit} >Save changes</Button>
                             </Modal.Footer>
                         </Modal.Dialog> : ""
                 }
