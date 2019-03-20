@@ -32,9 +32,10 @@ class App extends Component {
   getoption(name) {
     var listvalue
     if (name === "offer") {
+      // eslint-disable-next-line array-callback-return
       datajs.property.map(e1 => {
         if (e1.id === name) {
-          listvalue = e1.choice
+         return listvalue = e1.choice
         }
       })
       this.statechang(listvalue);

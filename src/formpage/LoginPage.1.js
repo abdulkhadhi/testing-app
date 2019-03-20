@@ -8,6 +8,7 @@ export default class LoginPage extends Component {
         this.state = {
             email: '',
             password: '',
+            name: '',
         }
         this.modelclose = this.modelclose.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -20,7 +21,8 @@ export default class LoginPage extends Component {
         e.preventDefault();
         const obj = {
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            name: this.state.name,
         };
         axios.post('http://localhost:4000/Reg/add', obj)
             .then(res => this.newMethod(res));
@@ -28,6 +30,7 @@ export default class LoginPage extends Component {
         this.setState({
             email: '',
             password: '',
+            name: '',
         })
     }
     newMethod(res) {
@@ -50,10 +53,18 @@ export default class LoginPage extends Component {
                             </Modal.Header>
 
                             <Modal.Body>
+                                <Form.Label>Full Name</Form.Label>
+                                <Form.Control type="text" placeholder="Enter Name" value={this.state.name} onChange={e => this.setState({
+                                    name: e.target.value,
+                                })} />
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({ email: e.target.value })} />
+                                <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({
+                                    email: e.target.value
+                                })} />
                                 <Form.Label>password </Form.Label>
-                                <Form.Control type="password" placeholder="Enter password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
+                                <Form.Control type="password" placeholder="Enter password" value={this.state.password} onChange={e => this.setState({
+                                    password: e.target.value
+                                })} />
 
                             </Modal.Body>
 
