@@ -30,9 +30,6 @@ ul{
 .bg{
   background-color: #10b5b5;
 }
-.image{
-  background-image: url("./logo/logo.png");
-}
 .topnav-right {
   float: right;
   padding: 7px;

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Form,Image, Button, FormControl } from 'react-bootstrap'
+import { Form, Image, Button, FormControl } from 'react-bootstrap'
 // import { Modal as ReactOverlayModal } from 'react-overlays'
 import Offer from './formpage/Offer';
 import LoginPage from "./formpage/LoginPage.1";
+import logo from './logo/logo.png';
+
 const datajs = require('./data/datajs.json');
+
 
 // var Modal = require('react-bootstrap-modal');
 
@@ -70,7 +73,7 @@ class App extends Component {
               {e.id === "header" ? "icon" : e.displayname}
             </li>
             )}
-            <Image className="image" fluid />;
+          <Image src={logo} width="21%" fluid />
           <div class="topnav-right">
             <Form inline>
               <FormControl type="text" placeholder="Search" className="mr-sm-2" />
