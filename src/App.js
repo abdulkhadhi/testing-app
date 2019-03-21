@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Form,Image, Button, FormControl } from 'react-bootstrap'
 // import { Modal as ReactOverlayModal } from 'react-overlays'
 import Offer from './formpage/Offer';
 import LoginPage from "./formpage/LoginPage.1";
@@ -35,7 +36,7 @@ class App extends Component {
       // eslint-disable-next-line array-callback-return
       datajs.property.map(e1 => {
         if (e1.id === name) {
-         return listvalue = e1.choice
+          return listvalue = e1.choice
         }
       })
       this.statechang(listvalue);
@@ -65,12 +66,18 @@ class App extends Component {
       <div className="App">
         <ul>
           {
-            datajs.property.map(e => <li className="click left" onClick={() => { this.getoption(e.id) }}>
-              {e.id}
+            datajs.property.map(e => <li className="click left bg" onClick={() => { this.getoption(e.id) }}>
+              {e.id === "header" ? "icon" : e.displayname}
             </li>
             )}
+            <Image className="image" fluid />;
+          <div class="topnav-right">
+            <Form inline>
+              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+              <Button variant="outline-success">Search</Button>
+            </Form>
+          </div>
         </ul>
-        <p>{this.state.response}</p>
         <Offer
           showitem={this.state.showitem}
           listvalue={this.state.listvalue}

@@ -1,9 +1,11 @@
-ul {
+ul{
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  text-align: center;
+  padding: 1px 2px 1px;
   overflow: hidden;
-  background-color: #333;
+  font-size: 17px;
+  background-color: #efefef;
+  text-transform: uppercase;
 }
 .click {
   display: block;
@@ -24,4 +26,14 @@ ul {
     width: 12%;
     top: 25px;
     left: inherit;
+}
+.bg{
+  background-color: #10b5b5;
+}
+.image{
+  background-image: url("./logo/logo.png");
+}
+.topnav-right {
+  float: right;
+  padding: 7px;
 }

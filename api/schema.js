@@ -10,7 +10,7 @@ let Register = new Schema({
     type: String
   },
   password: {
-    type: String
+    type: Number
   },
 }, {
     collection: 'Register'
