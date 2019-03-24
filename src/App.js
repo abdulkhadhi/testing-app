@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Form, Image, Button, FormControl } from 'react-bootstrap'
-// import { Modal as ReactOverlayModal } from 'react-overlays'
 import Offer from './formpage/Offer';
-import LoginPage from "./formpage/LoginPage.1";
+import CardDisplay from "./formpage/CardView";
+import DropdownControl from "./formpage/dropdown/dropdown";
 import logo from './logo/logo.png';
 
 const datajs = require('./data/datajs.json');
@@ -17,10 +17,10 @@ class App extends Component {
     this.state = {
       listvalue: [],
       showitem: false,
-      modal: false,
       response: '',
+      dropdown: false
     }
-    this.modelclose = this.modelclose.bind(this);
+   
   }
   // componentDidMount() {
   //   this.callApi()
@@ -33,35 +33,45 @@ class App extends Component {
   //   if (response.status !== 200) throw Error(body.message);
   //   return body;
   // };
-  getoption(name) {
+  getoption(e) {
     var listvalue
-    if (name === "offer") {
+    if (e.id === "offer") {
       // eslint-disable-next-line array-callback-return
       datajs.property.map(e1 => {
-        if (e1.id === name) {
+        if (e1.id === e.id) {
           return listvalue = e1.choice
         }
       })
-      this.statechang(listvalue);
+      this.Offerstatechang(listvalue);
     }
-    if (name === "login") {
-      this.setState({
-        modal: !this.state.modal,
-        showitem: false,
+    if (e.id === "login") {
+      datajs.property.map(e1 => {
+        if (e1.id === e.id) {
+          return listvalue = e1.choice
+        }
       })
+      this.Loginstatechange(listvalue);
     }
 
   };
-  statechang(listvalue) {
+  Offerstatechang(listvalue) {
     this.setState({
       listvalue: listvalue,
       showitem: !this.state.showitem,
-      modal: false,
+      dropdown:false
     })
   }
-  modelclose() {
+  Loginstatechange(listvalue) {
     this.setState({
-      modal: false,
+      listvalue: listvalue,
+      dropdown: !this.state.dropdown,
+      showitem:false
+    })
+  }
+  
+  drop(e) {
+    this.setState({
+      dropdown: !this.state.dropdown
     })
   }
   render() {
@@ -69,8 +79,8 @@ class App extends Component {
       <div className="App">
         <ul>
           {
-            datajs.property.map(e => <li className="click left bg" onClick={() => { this.getoption(e.id) }}>
-              {e.id === "header" ? "icon" : e.displayname}
+            datajs.property.map(e => <li className="click left bg" onClick={() => { this.getoption(e) }}>
+              {e.displayname}
             </li>
             )}
           <Image src={logo} width="21%" fluid />
@@ -85,9 +95,13 @@ class App extends Component {
           showitem={this.state.showitem}
           listvalue={this.state.listvalue}
         />
-        <LoginPage
+        <DropdownControl
+          dropdown={this.state.dropdown}
+          listvalue={this.state.listvalue}
+        />
+        <CardDisplay
           modal={this.state.modal}
-          close={this.modelclose}
+          showitem={this.state.showitem}
         />
       </div>
     );

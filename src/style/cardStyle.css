@@ -1,0 +1,13 @@
+.size{
+    width: 225px;
+    margin-left: 285px;
+}
+.size:hover {
+   outline: 3px solid #6610f2; 
+  }
+  .li:hover {
+    background-color: #f8f9fa;
+  }
+  .li{
+    cursor: pointer;
+  }

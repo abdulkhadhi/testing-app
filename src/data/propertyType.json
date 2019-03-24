@@ -1,0 +1,41 @@
+{
+    "id": "propertyTypes",
+    "propertyDefinitions": {
+        "electoring": {
+            "mobile": {
+                "choice": [
+                    {
+                        "id": "MI",
+                        "smallImage": "/image.jpg"
+                    },
+                    {
+                        "id":"OPPO",
+                        "image":""
+                    }
+                ]
+            },
+            "Mobile Accessories": {
+                "choice": [
+                    "Mobile Cases",
+                    "Headphones & Headsets",
+                    "Power Banks",
+                    "Screenguards",
+                    "Memory Cards",
+                    "Mobile Cables",
+                    "Mobile Chargers",
+                    "Mobile Holders"
+                ]
+            },
+            "Tablets": {
+                "choice": [
+                    "Apple iPads",
+                    "Televisions",
+                    "Home Entertainment",
+                    "Home Audio Speakers",
+                    "Home Theatres",
+                    "Bluetooth Speakers"
+                ]
+            }
+        }
+    }
+}
