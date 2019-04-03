@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../../style/cardStyle.css';
 import { Modal } from 'react-bootstrap'
-import LoginPage from "./LoginPage.1";
-import AdminPage from "./Admin";
+import UserRegister from "./Registeruser";
+import AdminLogin from "./Admin";
 export default class DropdownControl extends Component {
     constructor(props) {
         super(props);
@@ -44,11 +44,11 @@ export default class DropdownControl extends Component {
                             </Modal.Body>
                         </Modal.Dialog> : ""
                 }
-                <LoginPage
-                    // modal={this.state.modal}
-                    // close={this.modelclose}
+                <UserRegister
+                    modal={this.state.modal}
+                    close={this.modelclose}
                 />
-                <AdminPage
+                <AdminLogin
                     AdminModel={this.state.AdminModel}
                 />
             </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios';
 
-export default class LoginPage extends Component {
+export default class UserRegister extends Component {
     constructor(props) {
         super(props);
         this.state = {

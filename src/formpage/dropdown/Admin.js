@@ -1,13 +1,40 @@
 import React, { Component } from 'react';
 import '../../style/cardStyle.css';
-import { Modal, Button, Form } from 'react-bootstrap'
-export default class AdminPage extends Component {
+import { Modal, Button, Form } from 'react-bootstrap';
+import axios from 'axios';
+
+const config = require('../../constant/constantitem');
+
+
+export default class AdminLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
             password: '',
-            name: '',
+            prodectModel: false
+        }
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+    onSubmit(e) {
+        e.preventDefault();
+        const obj = {
+            email: this.state.email,
+            password: this.state.password,
+        };
+        axios.post('http://localhost:4000/Reg/login', obj)
+            .then(res => this.newMethod(res));
+        this.state = {
+            email: '',
+            password: '',
+        }
+    }
+    newMethod(res) {
+        if (res.status === 200) {
+            this.setState({
+                prodectModel: true,
+            })
+            return console.log(res.data);
         }
     }
     render() {
@@ -36,10 +63,12 @@ export default class AdminPage extends Component {
 
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={this.modelclose}>Close</Button>
-                                <Button variant="primary" type="submit" onClick={this.onSubmit} >Save changes</Button>
+                                <Button variant="primary" type="submit" onClick={this.onSubmit} >LOGIN</Button>
                             </Modal.Footer>
                         </Modal.Dialog> : ""
                 }
+                < ProdectModel
+                />
             </form>
 
         )
