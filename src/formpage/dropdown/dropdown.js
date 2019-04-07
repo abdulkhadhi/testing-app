@@ -3,29 +3,46 @@ import '../../style/cardStyle.css';
 import { Modal } from 'react-bootstrap'
 import UserRegister from "./Registeruser";
 import AdminLogin from "./Admin";
+import UserLogin from "./Userlog";
 export default class DropdownControl extends Component {
     constructor(props) {
         super(props);
         this.state = {
             modal: false,
-            AdminModel:false
+            AdminModel: false,
+            UserLoginmodel: false,
         }
         this.modelclose = this.modelclose.bind(this);
     }
     modelclose() {
         this.setState({
             modal: false,
+            AdminModel: false,
+            UserLoginmodel: false,
         })
     }
     getoption(item) {
-        this.props.listvalue.map((e) => {
-            if (e === item) {
-                this.setState({
-                    // modal: !this.state.modal,
-                    AdminModel: !this.state.AdminModel
-                })
-            }
-        })
+        if ("user login" === item) {
+            this.setState({
+                UserLoginmodel: !this.state.UserLoginmodel,
+                modal: false,
+                AdminModel: false,
+            })
+        }
+        if ("register" === item) {
+            this.setState({
+                modal: !this.state.modal,
+                AdminModel: false,
+                UserLoginmodel: false,
+            })
+        }
+        if ("Admin" === item) {
+            this.setState({
+                AdminModel: !this.state.AdminModel,
+                modal: false,
+                UserLoginmodel: false,
+            })
+        }
     }
     render() {
         return (
@@ -46,10 +63,15 @@ export default class DropdownControl extends Component {
                 }
                 <UserRegister
                     modal={this.state.modal}
-                    close={this.modelclose}
+                    RegModelclose={this.modelclose}
                 />
                 <AdminLogin
                     AdminModel={this.state.AdminModel}
+                    AdminModelclose={this.modelclose}
+                />
+                <UserLogin
+                    User={this.state.UserLoginmodel}
+                    UserLogModel={this.modelclose}
                 />
             </div>
 

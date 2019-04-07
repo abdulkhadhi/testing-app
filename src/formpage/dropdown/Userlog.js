@@ -2,19 +2,14 @@ import React, { Component } from 'react';
 import '../../style/cardStyle.css';
 import { Modal, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import ProdectModel from '../prodect/prodectlist';
-import { withRouter } from 'react-router-dom';
 
-const config = require('../../constant/constantitem');
-
-
-export default class AdminLogin extends Component {
+export default class UserLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
             password: '',
-            prodectModel: false
+        
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.modelclose=this.modelclose.bind(this);
@@ -34,27 +29,25 @@ export default class AdminLogin extends Component {
     }
     newMethod(res) {
         if (res.status === 200) {
-            this.modelclose()
             this.setState({
                 prodectModel: true,
-                
             })
             return console.log(res.data);
         }
     }
     modelclose() {
-        this.props.AdminModelclose();
+        this.props.UserLogModel();
     }
     render() {
         return (
             <form>
                 {
-                    this.props.AdminModel === true ?
+                    this.props.User === true ?
                         <Modal.Dialog >
 
                             <Modal.Header>
 
-                                <Modal.Title>ADMIN</Modal.Title>
+                                <Modal.Title>USER</Modal.Title>
                             </Modal.Header>
 
                             <Modal.Body>
@@ -75,9 +68,9 @@ export default class AdminLogin extends Component {
                             </Modal.Footer>
                         </Modal.Dialog> : ""
                 }
-                < ProdectModel
-                    prodectmodel={this.state.prodectModel}
-                />
+                {/* < ProdectModel
+                    prodectModel={this.state.prodectModel}
+                /> */}
             </form>
 
         )

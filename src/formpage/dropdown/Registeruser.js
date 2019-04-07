@@ -38,43 +38,39 @@ export default class UserRegister extends Component {
     }
 
     modelclose() {
-        this.props.close();
+        this.props.RegModelclose();
     }
     render() {
         return (
-            <form>
-                {
-                    this.props.modal === true ?
-                        <Modal.Dialog >
+            this.props.modal === true ?
+                <Modal.Dialog >
 
-                            <Modal.Header>
+                    <Modal.Header>
 
-                                <Modal.Title>REGISTER</Modal.Title>
-                            </Modal.Header>
+                        <Modal.Title>REGISTER</Modal.Title>
+                    </Modal.Header>
 
-                            <Modal.Body>
-                                <Form.Label>Full Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Name" value={this.state.name} onChange={e => this.setState({
-                                    name: e.target.value,
-                                })} />
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({
-                                    email: e.target.value
-                                })} />
-                                <Form.Label>password </Form.Label>
-                                <Form.Control type="password" placeholder="Enter password" value={this.state.password} onChange={e => this.setState({
-                                    password: e.target.value
-                                })} />
+                    <Modal.Body>
+                        <Form.Label>Full Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Name" value={this.state.name} onChange={e => this.setState({
+                            name: e.target.value,
+                        })} />
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({
+                            email: e.target.value
+                        })} />
+                        <Form.Label>password </Form.Label>
+                        <Form.Control type="password" placeholder="Enter password" value={this.state.password} onChange={e => this.setState({
+                            password: e.target.value
+                        })} />
 
-                            </Modal.Body>
+                    </Modal.Body>
 
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={this.modelclose}>Close</Button>
-                                <Button variant="primary" type="submit" onClick={this.onSubmit} >Save changes</Button>
-                            </Modal.Footer>
-                        </Modal.Dialog> : ""
-                }
-            </form>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.modelclose}>Close</Button>
+                        <Button variant="primary" type="submit" onClick={this.onSubmit} >Save changes</Button>
+                    </Modal.Footer>
+                </Modal.Dialog> : ""
         );
 
     }
