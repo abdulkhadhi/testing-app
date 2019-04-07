@@ -1,62 +1,63 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap'
+import '../../style/cardStyle.css';
+import { Modal, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import ProdectModel from '../prodect/prodectlist';
+import { withRouter } from 'react-router-dom';
 
-export default class LoginPage extends Component {
+const config = require('../../constant/constantitem');
+
+
+export default class AdminLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
             password: '',
-            name: '',
+            prodectModel: false
         }
-        this.modelclose = this.modelclose.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.modelclose=this.modelclose.bind(this);
     }
-    // submit() {
-    //     var userData = Object.assign({}, this.state);
-    //     console.log(userData)
-    // }
     onSubmit(e) {
         e.preventDefault();
         const obj = {
             email: this.state.email,
             password: this.state.password,
-            name: this.state.name,
         };
-        axios.post('http://localhost:4000/Reg/add', obj)
+        axios.post('http://localhost:4000/Reg/login', obj)
             .then(res => this.newMethod(res));
-
-        this.setState({
+        this.state = {
             email: '',
             password: '',
-            name: '',
-        })
+        }
     }
     newMethod(res) {
-        return console.log(res.data);
+        if (res.status === 200) {
+            this.modelclose()
+            this.setState({
+                prodectModel: true,
+                
+            })
+            return console.log(res.data);
+        }
     }
-
     modelclose() {
-        this.props.close();
+        this.props.AdminModelclose();
     }
     render() {
         return (
             <form>
                 {
-                    this.props.modal === true ?
+                    this.props.AdminModel === true ?
                         <Modal.Dialog >
 
                             <Modal.Header>
 
-                                <Modal.Title>REGISTER</Modal.Title>
+                                <Modal.Title>ADMIN</Modal.Title>
                             </Modal.Header>
 
                             <Modal.Body>
-                                <Form.Label>Full Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Name" value={this.state.name} onChange={e => this.setState({
-                                    name: e.target.value,
-                                })} />
                                 <Form.Label>Email address</Form.Label>
                                 <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({
                                     email: e.target.value
@@ -70,12 +71,15 @@ export default class LoginPage extends Component {
 
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={this.modelclose}>Close</Button>
-                                <Button variant="primary" type="submit" onClick={this.onSubmit} >Save changes</Button>
+                                <Button variant="primary" type="submit" onClick={this.onSubmit} >LOGIN</Button>
                             </Modal.Footer>
                         </Modal.Dialog> : ""
                 }
+                < ProdectModel
+                    prodectmodel={this.state.prodectModel}
+                />
             </form>
-        );
 
+        )
     }
 }

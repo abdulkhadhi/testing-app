@@ -2,23 +2,24 @@
     "id": "formPage",
     "property": [
         {
-            "id": "header",
-            "displayname": "shopping"
+            "id": "login",
+            "displayname": "login",
+            "choice": [
+                "user login",
+                "register",
+                "Admin"
+            ]
         },
         {
             "id": "offer",
             "displayname": "Todayoffer",
-            "Ui_category":"dropdown",
+            "Ui_category": "dropdown",
             "choice": [
                 "electoring",
                 "fan",
                 "mobile",
                 "charger"
             ]
-        },
-        {
-            "id": "login",
-            "displayname": "login"
         }
     ]
 }
