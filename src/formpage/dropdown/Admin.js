@@ -3,12 +3,13 @@ import '../../style/cardStyle.css';
 import { Modal, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import ProdectModel from '../prodect/prodectlist';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
+// import { BrowserRouter as Router } from 'react-router-dom';
 
 const config = require('../../constant/constantitem');
 
 
-export default class AdminLogin extends Component {
+class AdminLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +18,7 @@ export default class AdminLogin extends Component {
             prodectModel: false
         }
         this.onSubmit = this.onSubmit.bind(this);
-        this.modelclose=this.modelclose.bind(this);
+        this.modelclose = this.modelclose.bind(this);
     }
     onSubmit(e) {
         e.preventDefault();
@@ -27,6 +28,7 @@ export default class AdminLogin extends Component {
         };
         axios.post('http://localhost:4000/Reg/login', obj)
             .then(res => this.newMethod(res));
+        // eslint-disable-next-line react/no-direct-mutation-state
         this.state = {
             email: '',
             password: '',
@@ -35,9 +37,10 @@ export default class AdminLogin extends Component {
     newMethod(res) {
         if (res.status === 200) {
             this.modelclose()
+            // let path = `prodectModel`;
+            // this.props.history.push(path);
             this.setState({
                 prodectModel: true,
-                
             })
             return console.log(res.data);
         }
@@ -83,3 +86,5 @@ export default class AdminLogin extends Component {
         )
     }
 }
+// export default withRouter(AdminLogin)
+export default AdminLogin;
