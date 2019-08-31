@@ -17,12 +17,13 @@ class App extends Component {
     this.state = {
       listvalue: [],
       showitem: false,
+      card: false,
       response: '',
       dropdown: false
     }
-   
+
   }
-  
+
   getoption(e) {
     var listvalue
     if (e.id === "offer") {
@@ -48,17 +49,17 @@ class App extends Component {
     this.setState({
       listvalue: listvalue,
       showitem: !this.state.showitem,
-      dropdown:false
+      dropdown: false
     })
   }
   Loginstatechange(listvalue) {
     this.setState({
       listvalue: listvalue,
       dropdown: !this.state.dropdown,
-      showitem:false
+      showitem: false
     })
   }
-  
+
   drop(e) {
     this.setState({
       dropdown: !this.state.dropdown
@@ -90,8 +91,8 @@ class App extends Component {
           listvalue={this.state.listvalue}
         />
         <CardDisplay
-          modal={this.state.modal}
-          showitem={this.state.showitem}
+          // modal={this.state.modal}
+          showitem={this.state.card}
         />
       </div>
     );

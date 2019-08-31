@@ -1,0 +1,14 @@
+[
+    {
+        "Modalname": "pop",
+        "color": "red"
+    },
+    {
+        "Modalname": "cool",
+        "color": "white"
+    },
+    {
+        "Modalname": "raw",
+        "color": "yellow"
+    }
+]

@@ -23,31 +23,60 @@ export default class ProdectModel extends Component {
             battery: "",
             warranty: ""
         }
+        this.onSubmit = this.onSubmit.bind(this);
     }
+    onSubmit(e) {
+        e.preventDefault();
+        const obj = {
+            Modalname: this.state.Modalname,
+            color: this.state.color,
+            // name: this.state.name,
+        };
+        axios.post('http://localhost:4000/Reg/prodectadded', obj)
+            .then(res => this.newMethod(res));
+
+        this.setState({
+            Modalname: '',
+            color: '',
+        })
+    }
+    newMethod(res) {
+        return console.log(res.data);
+    }
+
     render() {
 
         return (
-            this.props.prodectmodel === true ?
-                <Form>
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
-                        <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-              </Form.Text>
-                    </Form.Group>
+            <div>
+                {
+                    this.props.prodectmodel === true ?
+                        <Modal.Dialog >
 
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
-                    <Form.Group controlId="formBasicChecbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Submit
-            </Button>
-                </Form> :""
+                            <Modal.Header>
+
+                                <Modal.Title>prodectmodel</Modal.Title>
+                            </Modal.Header>
+
+                            <Modal.Body>
+                                <Form.Label>Modalname</Form.Label>
+                                <Form.Control type="text" placeholder="Enter Modalname" value={this.state.Modalname} onChange={e => this.setState({
+                                    Modalname: e.target.value
+                                })} />
+                                <Form.Label>color </Form.Label>
+                                <Form.Control type="text" placeholder="Enter color" value={this.state.color} onChange={e => this.setState({
+                                    color: e.target.value
+                                })} />
+
+                            </Modal.Body>
+
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={this.modelclose}>cancel</Button>
+                                <Button variant="primary" type="submit" onClick={this.onSubmit} >submit</Button>
+                            </Modal.Footer>
+                        </Modal.Dialog> : ""
+                }
+            </div>
+
         )
     }
 }

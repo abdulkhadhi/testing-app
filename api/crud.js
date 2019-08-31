@@ -3,7 +3,8 @@ const appRoute = express.Router();
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 const config = require('./config');
-const RegisterSchma = require('./schema.js')
+const RegisterSchma = require('./schema.js');
+const prodectSchema = require('./prodectschema.js');
 
 // Defined store route
 appRoute.route('/add').post(function (req, res) {
@@ -54,4 +55,27 @@ appRoute.route('/login').post(function (req, res) {
     }
   })
 })
+
+appRoute.route('/prodectadded').post(function (req, res) {
+
+  let prodect = new prodectSchema(req.body);
+  prodect.save()
+    .then(prodect => {
+      return res.status(200).json({ 'prodect': 'prodect in added successfully' });
+    })
+    .catch(err => {
+      return res.status(400).send("unable to save to database");
+    });
+})
+appRoute.route('/carddata').get(function (req, res) {
+  // eslint-disable-next-line array-callback-return
+  prodectSchema.find(function (err, Reg) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.json(Reg);
+    }
+  });
+});
 module.exports = appRoute;
