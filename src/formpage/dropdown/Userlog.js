@@ -9,10 +9,10 @@ export default class UserLogin extends Component {
         this.state = {
             email: '',
             password: '',
-        
+
         }
         this.onSubmit = this.onSubmit.bind(this);
-        this.modelclose=this.modelclose.bind(this);
+        this.modelclose = this.modelclose.bind(this);
     }
     onSubmit(e) {
         e.preventDefault();
@@ -36,38 +36,37 @@ export default class UserLogin extends Component {
         }
     }
     modelclose() {
-        this.props.UserLogModel();
+        return this.props.history.push("/");
     }
     render() {
         return (
             <form>
-                {
-                    this.props.User === true ?
-                        <Modal.Dialog >
 
-                            <Modal.Header>
+                <Modal.Dialog >
 
-                                <Modal.Title>USER</Modal.Title>
-                            </Modal.Header>
+                    <Modal.Header>
 
-                            <Modal.Body>
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({
-                                    email: e.target.value
-                                })} />
-                                <Form.Label>password </Form.Label>
-                                <Form.Control type="password" placeholder="Enter password" value={this.state.password} onChange={e => this.setState({
-                                    password: e.target.value
-                                })} />
+                        <Modal.Title>USER</Modal.Title>
+                    </Modal.Header>
 
-                            </Modal.Body>
+                    <Modal.Body>
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({
+                            email: e.target.value
+                        })} />
+                        <Form.Label>password </Form.Label>
+                        <Form.Control type="password" placeholder="Enter password" value={this.state.password} onChange={e => this.setState({
+                            password: e.target.value
+                        })} />
 
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={this.modelclose}>Close</Button>
-                                <Button variant="primary" type="submit" onClick={this.onSubmit} >LOGIN</Button>
-                            </Modal.Footer>
-                        </Modal.Dialog> : ""
-                }
+                    </Modal.Body>
+
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.modelclose}>Close</Button>
+                        <Button variant="primary" type="submit" onClick={this.onSubmit} >LOGIN</Button>
+                    </Modal.Footer>
+                </Modal.Dialog>
+
                 {/* < ProdectModel
                     prodectModel={this.state.prodectModel}
                 /> */}

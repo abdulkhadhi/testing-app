@@ -88,6 +88,7 @@ class App extends Component {
         />
         <DropdownControl
           dropdown={this.state.dropdown}
+          history={this.props}
           listvalue={this.state.listvalue}
         />
         <CardDisplay

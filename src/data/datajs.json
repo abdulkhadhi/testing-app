@@ -5,9 +5,9 @@
             "id": "login",
             "displayname": "login",
             "choice": [
-                "user login",
+                "userlogin",
                 "register",
-                "Admin"
+                "Adminlogin"
             ]
         },
         {

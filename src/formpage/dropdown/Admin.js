@@ -15,7 +15,8 @@ class AdminLogin extends Component {
         this.state = {
             email: '',
             password: '',
-            prodectModel: false
+            prodectModel: false,
+            adminModel: true
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.modelclose = this.modelclose.bind(this);
@@ -36,30 +37,25 @@ class AdminLogin extends Component {
     }
     newMethod(res) {
         if (res.status === 200) {
-            this.modelclose()
-            // let path = `prodectModel`;
-            // this.props.history.push(path);
             this.setState({
                 prodectModel: true,
+                adminModel: false,
             })
             return console.log(res.data);
         }
     }
     modelclose() {
-        this.props.AdminModelclose();
+        return this.props.history.push("/");
     }
     render() {
         return (
             <form>
                 {
-                    this.props.AdminModel === true ?
+                    this.state.adminModel === true ?
                         <Modal.Dialog >
-
                             <Modal.Header>
-
                                 <Modal.Title>ADMIN</Modal.Title>
                             </Modal.Header>
-
                             <Modal.Body>
                                 <Form.Label>Email address</Form.Label>
                                 <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({
@@ -69,9 +65,7 @@ class AdminLogin extends Component {
                                 <Form.Control type="password" placeholder="Enter password" value={this.state.password} onChange={e => this.setState({
                                     password: e.target.value
                                 })} />
-
                             </Modal.Body>
-
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={this.modelclose}>Close</Button>
                                 <Button variant="primary" type="submit" onClick={this.onSubmit} >LOGIN</Button>
@@ -80,11 +74,11 @@ class AdminLogin extends Component {
                 }
                 < ProdectModel
                     prodectmodel={this.state.prodectModel}
+                    adminModelclose={this.modelclose}
                 />
             </form>
 
         )
     }
 }
-// export default withRouter(AdminLogin)
 export default AdminLogin;

@@ -9,7 +9,12 @@ let prodect = new Schema({
     color: {
         type: String
     },
-}, {
+    image: {
+        data: Buffer,
+        contentType: String
+    },
+},
+    {
         collection: 'prodect'
     });
 
